@@ -1,0 +1,247 @@
+import turtle as t
+import random as r
+
+n = 100.0                     # 可调参数
+
+t.speed(0)                    # 初始参量设置
+t.bgcolor('black')  
+
+t.left(90)                   # 绘画五角星
+t.fd(3 * n)
+t.pensize(3)
+t.begin_fill()
+t.left(126)
+t.color('orange', 'yellow')
+for i in range(5):
+    t.fd(n / 5)
+    t.right(144)
+    t.fd(n / 5)
+    t.left(72)
+t.end_fill()
+t.right(126)
+t.color('dark green')
+t.backward(n * 4.8)
+
+def light():            # 定义画彩灯函数
+    if r.randint(0, 30) == 0:
+        t.color('tomato')
+        t.circle(6)
+        t.color('dark green')
+    elif r.randint(0, 30) == 1:
+        t.color("orange")
+        t.circle(4)
+        t.color('dark green')
+    else:
+        t.color('dark green')
+
+def tree(d, s):     #定义绘制树的函数
+    if d <= 0:
+        return
+    t.fd(s)
+    tree(d - 1, s * .8)
+    t.right(120)
+    tree(d - 3, s * .5)
+    light()
+    t.right(120)
+    tree(d - 3, s * .5)
+    t.right(120)
+    t.backward(s)
+
+tree(16, n)
+t.backward(n / 2)
+
+t.seth(0)          # 定义绘制花盆函数
+t.pensize(2)
+t.pencolor('brown')
+t.fillcolor('brown')
+t.penup()
+t.goto(-50, -175)
+t.pendown()
+t.begin_fill()
+t.fd(100)
+t.right(120)
+t.fd(50)
+t.right(60)
+t.fd(50)
+t.right(60)
+t.fd(50)
+t.end_fill()
+t.pencolor('yellow')
+t.pensize(4)
+t.penup()
+t.goto(-46, -180)
+t.seth(0)
+t.pendown()
+t.fd(95)
+t.penup()
+t.goto(33, -195)
+t.pendown()
+t.seth(180)
+t.fd(70)
+
+for i in range(300):           # 定义绘制地上彩灯函数
+    v = r.randint(-550, 550)
+    z = r.randint(-300, -200)
+    t.speed(0)
+    t.penup()
+    t.goto(v, z)
+    t.pendown()
+    t.begin_fill()
+    if r.randint(0, 1) <= 0.3:
+        t.color('tomato')
+    elif 0.3 < r.randint(0, 1) <= 0.6:
+        t.color('brown')
+    else:
+        t.color('white')
+        t.pendown()
+    t.circle(5)
+    t.end_fill()
+
+for j in range(70):       # 设计雪花随机出现
+    x = r.randint(-330, 330)
+    y = r.randint(-330, 300)
+    t.pencolor('white')
+    t.pensize(1)
+    t.penup()
+    t.goto(x, y)
+    t.left(30)
+    t.pendown()
+    t.fd(15)
+    for k in range(2):
+        t.penup()
+        t.left(120)
+        t.fd(7.5)
+        t.pendown()
+        t.left(120)
+        t.fd(15)
+    
+def drawsnowman(d, m, e, f):        # 定义画雪人函数
+    t.speed(100)
+    t.bgcolor('black')
+    t.penup()
+    t.goto(d, m)
+    t.pendown()
+    t.pencolor("white")
+    t.pensize(2)
+    t.fillcolor("white")
+    t.seth(0)
+    t.begin_fill()
+    t.circle(e)
+    t.end_fill()
+    t.seth(180)
+    t.begin_fill()
+    t.circle(f)
+    t.end_fill()
+    t.pencolor("black")
+    t.fillcolor("black")
+    t.penup()  # 右眼睛
+    t.goto(d - e / 4, m + e)
+    t.seth(0)
+    t.pendown()
+    t.begin_fill()
+    t.circle(2)
+    t.end_fill()
+    t.penup()  # 左眼睛
+    t.goto(d + e / 4, m + e)
+    t.seth(0)
+    t.pendown()
+    t.begin_fill()
+    t.circle(2)
+    t.end_fill()
+    t.penup()  # 画嘴巴
+    t.goto(d, m + e / 2)
+    t.seth(180)
+    t.pendown()
+    t.fd(7)
+    t.penup()  # 画扣子
+    t.pencolor("red")
+    t.fillcolor("red")
+    t.goto(d, m - f / 4)
+    t.pendown()
+    t.begin_fill()
+    t.circle(2)
+    t.end_fill()
+    t.penup()
+    t.pencolor("tomato")
+    t.fillcolor("tomato")
+    t.goto(d, m - f / 2)
+    t.pendown()
+    t.begin_fill()
+    t.circle(2)
+    t.end_fill()
+    t.penup()
+    t.pencolor("black")
+    t.fillcolor("black")
+    t.goto(d, m - f)
+    t.pendown()
+    t.begin_fill()
+    t.circle(2)
+    t.end_fill()
+    t.penup()  # 画鼻子
+    t.pencolor("orange")
+    t.fillcolor("orange")
+    t.goto(d, m + e - 5)
+    t.pendown()
+    t.seth(180)
+    t.begin_fill()
+    t.circle(2)
+    t.end_fill()
+    t.pensize(5)
+    t.fd(14)
+    for g in range(1):
+        t.seth(-20)
+        t.pensize(2)
+        t.penup()
+        t.goto(d - 10, m + 2 * e)
+        t.pencolor("black")
+        t.pendown()
+        t.fillcolor("white")
+        t.begin_fill()
+        t.fd(30)
+        t.circle(4, 180)
+        t.fd(30)
+        t.circle(4, 180)
+        t.end_fill()
+        t.penup()      # 画圣诞帽
+        t.goto(d - 5, m + 2 * e)
+        t.seth(75)
+        t.pendown()
+        t.fillcolor("red")
+        t.begin_fill()
+        for h in range(5):
+            t.fd(6)
+            t.right(20)
+        t.seth(-10)
+        for h in range(5):
+            t.fd(8)
+            t.right(15)
+        t.seth(145)
+        for h in range(5):
+            t.fd(5)
+            t.left(2)
+        t.seth(90)
+        for h in range(5):
+            t.fd(1)
+            t.left(2)
+        t.seth(-90)
+        for h in range(4):
+            t.fd(4)
+            t.right(6)
+        t.seth(161)
+        t.fd(30)
+        t.end_fill()
+        t.pensize(1)
+        t.pencolor("black")
+
+
+drawsnowman(-200, -200, 20, 30)
+drawsnowman(-250, -200, 30, 40)
+
+t.penup()
+t.goto(50, -350)
+t.pendown()
+t.color('dark red', 'red')
+t.write('Marry Christmas', align='center', font=('Comic Sana MS', 40, 'bold'))         # 写字
+t.hideturtle()
+
+t.done()
